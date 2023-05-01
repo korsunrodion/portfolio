@@ -18,6 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.setHeader('Content-Type', 'text/plain');
   res.setHeader('Transfer-Encoding', 'chunked');
+  res.flushHeaders();
 
   const requestBody = {
     model: 'gpt-4',
