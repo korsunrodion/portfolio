@@ -63,7 +63,6 @@ export function middleware(request: NextRequest) {
 
   if (pageIsMissing) {
     const locale = pathname.split('/')[1];
-    console.log(locale);
 
     return NextResponse.redirect(
       new URL(`/${locale}`, request.url),
@@ -75,6 +74,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|assets|favicon.png|public).*)',
+    '/((?!api|_next/static|_next/image|assets|favicon.png|images).*)',
   ],
 };
