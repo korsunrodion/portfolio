@@ -49,6 +49,10 @@ export function middleware(request: NextRequest) {
     (locale) => !pathname.includes(`/${locale}/`) && !pathname.endsWith(`/${locale}`),
   );
 
+  const pageIsMissing = innerLocales.every(
+    (locale) => (pathname !== `/${locale}/` && pathname !== `/${locale}`),
+  );
+
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
 
@@ -57,11 +61,20 @@ export function middleware(request: NextRequest) {
     );
   }
 
+  if (pageIsMissing) {
+    const locale = pathname.split('/')[1];
+    console.log(locale);
+
+    return NextResponse.redirect(
+      new URL(`/${locale}`, request.url),
+    );
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|assets|favicon.png|public|header-shape.svg|hero-border.svg|type-animation.mp4|type-poster.jpg|cursor-swiper.svg|list-marker.svg).*)',
+    '/((?!api|_next/static|_next/image|assets|favicon.png|public).*)',
   ],
 };
