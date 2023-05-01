@@ -1,0 +1,39 @@
+@use './normalize.css';
+@use './reset.scss';
+
+body {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+
+  * {
+    text-decoration-thickness: 1px !important;
+    font-family: var(--font-proxima-nova) !important;
+    color: #222;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+.container {
+  padding-left: 49px;
+  padding-right: 49px;
+  max-width: 1360px;
+  width: 100%;
+
+  @media (min-width: 1360px) {
+    max-width: 1262px;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

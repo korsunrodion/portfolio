@@ -1,0 +1,26 @@
+{
+  "header": {
+    "home": "Home",
+    "chat": "Chat",
+    "projects": "Projects"
+  },
+  "hi": "Hi!",
+  "my-name": "My name is",
+  "name": "Rodion Korsun",
+  "i-am": "and I am a",
+  "full-stack": "full-stack developer",
+  "frontend": "Front-end skills:",
+  "backend": "Back-end skills:",
+  "ask": "Ask me anything",
+  "question": "Question",
+  "answer": "Assistant",
+  "placeholder": "How good are your skills in React?",
+  "work": "Latest work",
+  "visit": "Visit",
+  "contact": "Contact me",
+  "chat-error": "I'm sorry, but I'm unable to pass the message on to Rodion.\nPlease feel free to contact him via {telegram} or {email}",
+  "stack": "Stack:",
+  "more": "Load more",
+  "chatGreeting": "🙋 Hi there! I'm Rodion's assistant, ready to provide you with information about Rodion and assist you in any way related to his work!",
+  "footer": "Contact me"
+}
