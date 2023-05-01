@@ -1,6 +1,6 @@
 import Home from '@/components/Home';
+import { getDictionary } from '@/utils/getDictionary';
 import React from 'react';
-import { getDictionary } from '../getDictionary';
 
 interface Props {
   dictionary: {
