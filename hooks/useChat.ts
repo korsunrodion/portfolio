@@ -7,16 +7,12 @@ export interface IMessage {
   text: string;
 }
 
-interface Props {
-  greetingText: string;
-}
-
-const useChat = ({ greetingText }: Props) => {
+const useChat = () => {
   const messagesRef = useRef<IMessage[]>([]);
 
   const [messages, setMessages] = useState<IMessage[]>([{
     from: 'ai',
-    text: greetingText,
+    text: '**greeting**',
   }]);
   const [loading, setLoading] = useState(false);
 
@@ -51,6 +47,10 @@ const useChat = ({ greetingText }: Props) => {
   }, []);
 
   const sendMessage = useCallback(async (q: string) => {
+    if (loading) {
+      return;
+    }
+
     const body = [...messagesRef.current, {
       from: 'user',
       text: q.trim(),
@@ -80,6 +80,7 @@ const useChat = ({ greetingText }: Props) => {
             start(controller) {
               function push() {
                 reader.read().then(({ done, value }) => {
+                  console.log(value);
                   if (done) {
                     controller.close();
                     setLoading(false);

@@ -29,9 +29,10 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang='ua'>
+      <Html lang='en'>
         <Head>
-          <meta name='description' content='Rodion Korsun portfolio' />
+          <title>Rodion Korsun, portfolio</title>
+          <meta name='description' content='Rodion Korsun, portfolio' />
           <meta name='viewport' content='width=device-width, minimum-scale=1, initial-scale=1, shrink-to-fit=no' />
           <link rel='icon' href='/favicon.png' />
         </Head>

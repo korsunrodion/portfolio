@@ -1,6 +1,6 @@
 import * as S from './styled';
 import { GlobalContext } from '@/globalContext';
-import mainPng from '@/assets/images/main.png';
+import mainPng from '@/assets/images/main.webp';
 import React, { useContext } from 'react';
 
 const Hero: React.FC = () => {

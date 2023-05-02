@@ -29,7 +29,13 @@ const Projects: React.FC = () => {
         {Data.slice(0, itemsCount).map((item) => (
           <S.ProjectItem key={item.title}>
             <S.ProjectImageContainer onClick={() => onClickItem(item.id)}>
-              <S.ProjectImage fill src={item.img} quality={100} alt='' />
+              <S.ProjectImage
+                fill
+                sizes='(max-width: 768px) 100vw, 50vw'
+                src={item.img}
+                quality={100}
+                alt=''
+              />
             </S.ProjectImageContainer>
             <S.ProjectSide active={activeItem === item.id} onClick={() => setActiveItem(null)}>
               <S.ProjectTitle>{item.title}</S.ProjectTitle>

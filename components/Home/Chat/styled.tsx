@@ -36,10 +36,11 @@ export const ChatContainer = styled.div`
   background: #FFFFFF;
   border: 1px solid #000000;
   border-radius: 10px;
-  padding: 0 12px 16px 24px;
+  padding: 0 12px 16px 12px;
   display: flex;
   flex-direction: column;
   height: 600px;
+  box-shadow: 0px 9px 9px #A8A8A829;
 
   @media (max-width: 768px) {
     padding: 0 6px 8px 12px;
@@ -52,9 +53,9 @@ export const ChatBody = styled.div`
   gap: 12px;
   flex-grow: 1;
   overflow-y: auto;
-  padding-top: 36px;
+  padding-top: 24px;
   padding-bottom: 12px;
-  padding-right: 12px;
+  padding-right: 0px;
 
   scrollbar-color: #707B86 #EAEDF2;
   scrollbar-width: thin;

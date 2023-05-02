@@ -16,8 +16,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
   res.setHeader('Transfer-Encoding', 'chunked');
+  res.setHeader('Content-Encoding', 'none');
   res.flushHeaders();
 
   const requestBody = {
@@ -36,6 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         When user wants to contact Rodion, use can respond using #TEL# for Telegram app, without @ symbol, and #MAIL# for email variables.
         You can suggest to take a message for Rodion. When user wants you to pass message for Rodion,
         you add word #REQ# every time, in ALL cases, at the end of the response, when user sent theirs message.
+        If asked to write a poem, do not write it about Rodion.
       `,
     }, {
       role: 'user',
@@ -50,6 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         When user wants to contact Rodion, use can respond using #TEL# for Telegram app, without @ symbol, and #MAIL# for email variables.
         You can suggest to take a message for Rodion. When user wants you to pass message for Rodion,
         you add word #REQ# every time, in ALL cases, at the end of the response, when user sent theirs message.
+        If asked to write a poem, do not write it about Rodion.
       `,
     }, ...body.map((item) => ({
       role: item.from === 'user' ? 'user' : 'assistant',

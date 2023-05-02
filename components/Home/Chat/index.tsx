@@ -11,13 +11,10 @@ const Chat: React.FC = () => {
 
   const [value, setValue] = useState('');
 
-  const { messages, loading, sendMessage } = useChat({
-    greetingText: dictionary.chatGreeting,
-  });
+  const { messages, loading, sendMessage } = useChat();
 
   const onSend = useCallback(() => {
-    console.log(loading);
-    if (value.trim()) {
+    if (!loading && value.trim()) {
       sendMessage(value);
       setValue('');
     }
@@ -41,12 +38,17 @@ const Chat: React.FC = () => {
         <S.Title>{dictionary?.ask}</S.Title>
         <S.ChatContainer>
           <S.ChatBody ref={chatBodyRef}>
-            {messages.map((item) => (
+            {messages.map((item, index) => (
               <S.ChatItem key={item.text} fromAi={item.from === 'ai'}>
                 {item.from === 'ai' && (
-                <S.ChatTitle>{dictionary?.answer}</S.ChatTitle>
+                  <S.ChatTitle>{dictionary?.answer}</S.ChatTitle>
                 )}
-                <S.ChatMessage dangerouslySetInnerHTML={{ __html: item.text }} />
+                {index === 0 && (
+                  <S.ChatMessage dangerouslySetInnerHTML={{ __html: dictionary.chatGreeting }} />
+                )}
+                {index > 0 && (
+                  <S.ChatMessage dangerouslySetInnerHTML={{ __html: item.text }} />
+                )}
               </S.ChatItem>
             ))}
           </S.ChatBody>
