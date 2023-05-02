@@ -1,13 +1,18 @@
 import Chat from './Chat';
 import Hero from './Hero';
 import Projects from './Projects';
+import { IProject } from '@/data/projects';
 import React from 'react';
 
-const Home: React.FC = () => (
+interface Props {
+  projects: IProject[];
+}
+
+const Home: React.FC<Props> = ({ projects }) => (
   <>
     <Hero />
     <Chat />
-    <Projects />
+    <Projects projects={projects} />
   </>
 );
 

@@ -1,9 +1,13 @@
-export interface IProject {
+interface IProjectData {
   id: number,
   title: string;
   stack: string;
   link: string;
   img: string;
+}
+
+export interface IProject extends IProjectData {
+  imgFilled?: { base64: string, img: { src: string } };
 }
 
 const Projects: IProject[] = [{

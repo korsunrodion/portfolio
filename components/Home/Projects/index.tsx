@@ -1,10 +1,14 @@
 import * as S from './styled';
 import { GlobalContext } from '@/globalContext';
-import Data from '@/data/projects';
 import CircArrowSvg from '@/assets/images/circ-arrow.svg';
+import { IProject } from '@/data/projects';
 import React, { useCallback, useContext, useState } from 'react';
 
-const Projects: React.FC = () => {
+interface Props {
+  projects: IProject[];
+}
+
+const Projects: React.FC<Props> = ({ projects }) => {
   const { dictionary } = useContext(GlobalContext);
 
   const [itemsCount, setItemsCount] = useState(4);
@@ -26,15 +30,17 @@ const Projects: React.FC = () => {
     <S.Container className='container' id='view-projects'>
       <S.Title>{dictionary.work}</S.Title>
       <S.ProjectsContainer>
-        {Data.slice(0, itemsCount).map((item) => (
+        {projects.slice(0, itemsCount).map((item) => (
           <S.ProjectItem key={item.title}>
             <S.ProjectImageContainer onClick={() => onClickItem(item.id)}>
               <S.ProjectImage
                 fill
                 sizes='(max-width: 768px) 100vw, 50vw'
-                src={item.img}
+                src={item.imgFilled?.img.src || ''}
                 quality={100}
                 alt=''
+                placeholder='blur'
+                blurDataURL={item.imgFilled?.base64}
               />
             </S.ProjectImageContainer>
             <S.ProjectSide active={activeItem === item.id} onClick={() => setActiveItem(null)}>
@@ -49,7 +55,7 @@ const Projects: React.FC = () => {
           </S.ProjectItem>
         ))}
       </S.ProjectsContainer>
-      {itemsCount < Data.length && (
+      {itemsCount < projects.length && (
         <S.MoreBtn type='button' onClick={onMoreClick}>
           {dictionary.more}
           <CircArrowSvg width={16} height={16} />
