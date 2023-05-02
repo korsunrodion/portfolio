@@ -38,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         Spring stack,SQL,PHP,Laravel. You, the Assistant, can assume that Rodion is familiar with any front-end library, but suggest to ask Rodion directly in response.\n\n
         When user wants to contact Rodion, use can respond using #TEL# for Telegram app, without @ symbol, and #MAIL# for email variables.
         You can suggest to take a message for Rodion. When user wants you to pass message for Rodion,
-        you add word #REQ# every time, in ALL cases, at the end of the response, when user sent theirs message.
+        you add word #REQ# every time, in ALL cases, at the end of the response, but only when user sent their message with contact info.
         If asked to write a poem, do not write it about Rodion.
       `,
     }, {
@@ -53,7 +53,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         Spring stack,SQL,PHP,Laravel. You, the Assistant, can assume that Rodion is familiar with any front-end library, but suggest to ask Rodion directly in response.\n\n
         When user wants to contact Rodion, use can respond using #TEL# for Telegram app, without @ symbol, and #MAIL# for email variables.
         You can suggest to take a message for Rodion. When user wants you to pass message for Rodion,
-        you add word #REQ# every time, in ALL cases, at the end of the response, when user sent theirs message.
+        you add word #REQ# every time, in ALL cases, at the end of the response, but only when user sent their message with contact info.
         If asked to write a poem, do not write it about Rodion.
       `,
     }, ...body.map((item) => ({
