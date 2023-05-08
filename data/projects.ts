@@ -11,17 +11,17 @@ export interface IProject extends IProjectData {
 }
 
 const Projects: IProject[] = [{
-  id: 0,
-  title: 'Andoni Law [in test]',
-  stack: 'React, Next.js, Strapi',
-  link: 'https://andoni-test.herokuapp.com/',
-  img: '/images/andoni.webp',
-}, {
   id: 1,
-  title: 'Supreme Observer [in test]',
+  title: 'Supreme Court of Ukraine [in test]',
   stack: 'React, Next.js, Strapi, Elasticsearch',
   link: 'http://supreme-test.site/',
   img: '/images/supreme.webp',
+}, {
+  id: 0,
+  title: 'Andoni Law',
+  stack: 'React, Next.js, Strapi',
+  link: 'https://andonilaw.com/',
+  img: '/images/andoni.webp',
 }, {
   id: 3,
   title: 'Smotrow Related',
