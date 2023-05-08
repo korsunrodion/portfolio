@@ -21,7 +21,7 @@ const Projects: IProject[] = [{
   title: 'Andoni Law',
   stack: 'React, Next.js, Strapi',
   link: 'https://andonilaw.com/',
-  img: '/images/andoni.webp',
+  img: '/images/andoni2.webp',
 }, {
   id: 3,
   title: 'Smotrow Related',
