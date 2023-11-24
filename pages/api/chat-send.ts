@@ -67,67 +67,65 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       Authorization: `Bearer ${process.env.OPENAI_TOKEN}`,
       'Content-Type': 'application/json',
     },
-    responseType: 'stream',
   };
 
   const response = await axios.post('https://api.openai.com/v1/chat/completions', requestBody, config);
 
   let command = '';
   let waitingForCommand = false;
+  let returnText = '';
 
-  response.data.on('data', (chunk: string) => {
-    if (!chunk.toString().includes('[DONE]')) {
-      const messages = chunk.toString().trim().split('\n\n').map((item) => item.slice(6));
-      for (const i of messages) {
-        const json = JSON.parse(i);
-        if (json.choices.length > 0 && json.choices[0]?.delta?.content) {
-          let responseText = json.choices[0].delta.content;
+  const messages = response.data.toString().trim().split('\n\n').map((item: string) => item.slice(6));
+  console.log(messages);
+  for (const i of messages) {
+    if (i === '[DONE]') {
+      break;
+    }
+    const json = JSON.parse(i.replace(/\n/g, ''));
+    if (json.choices.length > 0 && json.choices[0]?.delta?.content) {
+      let responseText = json.choices[0].delta.content;
 
-          if (waitingForCommand) {
-            const pos = responseText.indexOf('#');
-            if (pos === -1) {
-              command += responseText;
-            } else {
-              command += responseText.slice(0, pos);
-            }
-          }
-
-          if (responseText.includes('#')) {
-            if (waitingForCommand) {
-              if (command === 'REQ') {
-                responseText = '';
-                axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`, {
-                  chat_id: '376907585',
-                  text: JSON.stringify(body),
-                }).then((telegramResponse) => {
-                  if (telegramResponse.status !== 200) {
-                    fs.appendFile('logs.txt', JSON.stringify(body), (err) => {
-                      console.log('Error occured writing logs', err);
-                    });
-                  }
-                }).catch(() => {
-                  fs.appendFile('logs.txt', JSON.stringify(body), (err) => {
-                    console.log('Error occured writing logs', err);
-                  });
-                });
-              } else if (command === 'TEL') {
-                responseText = '{telegram}';
-              } else if (command === 'MAIL') {
-                responseText = '{email}';
-              }
-              command = '';
-            }
-            waitingForCommand = !waitingForCommand;
-          }
-          if (!waitingForCommand) {
-            res.write(responseText);
-          }
+      if (waitingForCommand) {
+        const pos = responseText.indexOf('#');
+        if (pos === -1) {
+          command += responseText;
+        } else {
+          command += responseText.slice(0, pos);
         }
       }
-    }
-  });
 
-  response.data.on('end', () => {
-    res.status(200).end();
-  });
+      if (responseText.includes('#')) {
+        if (waitingForCommand) {
+          if (command === 'REQ') {
+            responseText = '';
+            axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/sendMessage`, {
+              chat_id: '376907585',
+              text: JSON.stringify(body),
+            }).then((telegramResponse) => {
+              if (telegramResponse.status !== 200) {
+                fs.appendFile('logs.txt', JSON.stringify(body), (err) => {
+                  console.log('Error occured writing logs', err);
+                });
+              }
+            }).catch(() => {
+              fs.appendFile('logs.txt', JSON.stringify(body), (err) => {
+                console.log('Error occured writing logs', err);
+              });
+            });
+          } else if (command === 'TEL') {
+            responseText = '{telegram}';
+          } else if (command === 'MAIL') {
+            responseText = '{email}';
+          }
+          command = '';
+        }
+        waitingForCommand = !waitingForCommand;
+      }
+      if (!waitingForCommand) {
+        returnText += responseText;
+      }
+    }
+  }
+  res.write(returnText);
+  res.status(200).end();
 };

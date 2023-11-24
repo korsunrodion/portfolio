@@ -46,7 +46,10 @@ const Chat: React.FC = () => {
                 {index === 0 && (
                   <S.ChatMessage dangerouslySetInnerHTML={{ __html: dictionary.chatGreeting }} />
                 )}
-                {index > 0 && (
+                {index > 0 && !item.text && (
+                  <S.Loader />
+                )}
+                {index > 0 && item.text && (
                   <S.ChatMessage dangerouslySetInnerHTML={{ __html: item.text }} />
                 )}
               </S.ChatItem>

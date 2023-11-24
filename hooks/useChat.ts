@@ -32,8 +32,8 @@ const useChat = () => {
     return result;
   };
 
-  const addMessage = useCallback((message: IMessage) => {
-    setMessages([...messagesRef.current, message]);
+  const addMessage = useCallback((message: IMessage[]) => {
+    setMessages([...messagesRef.current, ...message]);
   }, []);
 
   const addToLastMessage = useCallback((chunk: string) => {
@@ -56,13 +56,15 @@ const useChat = () => {
       text: q.trim(),
     }];
 
-    addMessage({
+    addMessage([{
       from: 'user',
       text: q.trim(),
-    });
+    }, {
+      from: 'ai',
+      text: '',
+    }]);
     setLoading(true);
 
-    let isFirst = true;
     fetch('/api/chat-send', {
       method: 'POST',
       body: JSON.stringify(body),
@@ -88,15 +90,7 @@ const useChat = () => {
                   }
 
                   const message = decoder.decode(value);
-                  if (isFirst) {
-                    addMessage({
-                      from: 'ai',
-                      text: formatMessage(message),
-                    });
-                    isFirst = false;
-                  } else {
-                    addToLastMessage(formatMessage(message));
-                  }
+                  addToLastMessage(formatMessage(message));
                   controller.enqueue(value);
                   push();
                 });
@@ -108,7 +102,7 @@ const useChat = () => {
         }
         return null;
       });
-  }, [addMessage]);
+  }, [addToLastMessage]);
 
   useEffect(() => {
     messagesRef.current = messages;
