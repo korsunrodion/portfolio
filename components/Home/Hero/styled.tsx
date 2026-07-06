@@ -40,7 +40,7 @@ export const SubtitleColored = styled.span`
 `;
 
 export const SkillsContainer = styled.div`
-  margin-top: 40px;
+  margin-top: 12px;
   display: flex;
   gap: 80px;
 

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(yarn add -D tailwindcss@^3.4.0 postcss autoprefixer)",
+      "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Where-Object { $_.CommandLine -match 'portfolio' } | Select-Object ProcessId, CommandLine | Format-List)",
+      "PowerShell(Stop-Process -Id 14360, 7076, 38076 -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(yarn remove styled-components @types/styled-components)"
+    ]
+  }
+}

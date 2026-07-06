@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import React from 'react';
 import type { AppProps } from 'next/app';
+import '@/assets/styles/tailwind.css';
 import '@/assets/styles/index.scss';
 import localFont from 'next/font/local';
 
