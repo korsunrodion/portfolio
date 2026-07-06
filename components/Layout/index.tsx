@@ -1,6 +1,5 @@
 import Footer from './Footer';
 import Header from './Header';
-import * as S from './styled';
 import GlobalContextComponent from '@/globalContext';
 import React from 'react';
 
@@ -15,9 +14,9 @@ interface Props {
 const Layout: React.FC<Props> = ({ dictionary, locale, children }) => (
   <GlobalContextComponent dictionary={dictionary}>
     <Header locale={locale} />
-    <S.Container>
+    <div className='pt-16'>
       {children}
-    </S.Container>
+    </div>
     <Footer />
   </GlobalContextComponent>
 );

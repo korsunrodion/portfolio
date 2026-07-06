@@ -4,23 +4,71 @@
     "chat": "Chat",
     "projects": "Projects"
   },
-  "hi": "Hi!",
-  "my-name": "My name is",
-  "name": "Rodion Korsun",
-  "i-am": "and I am a",
-  "full-stack": "Senior Full-Stack",
-  "full-stack-2": "Developer",
-  "skills": "Other skills:",
+  "title": "Full-stack developer building production systems that hold up under load.",
+  "subtitle": "7+ years shipping Node.js/NestJS services and React/Next.js products. I design microservices and high-load APIs, improve performance and SEO across the stack, and own features from data model to UI.",
+  "viewProjects": "View projects",
+  "getInTouch": "Get in touch",
+  "stackSection": {
+    "title": "Stack",
+    "tagline": "tools I use in production, not a wishlist",
+    "groups": [
+      {
+        "title": "Back-end & APIs",
+        "tools": ["Node.js · Express · NestJS"],
+        "desc": "Microservices, high-load APIs, queue-based processing"
+      },
+      {
+        "title": "Front-end",
+        "tools": ["React · Next.js · TypeScript", "Redux · MobX · Zustand", "Zod · React Hook Form"],
+        "desc": "With Material UI, Tailwind UI, Hero UI"
+      },
+      {
+        "title": "AI & ML",
+        "tools": ["LLM integrations · ML model training"],
+        "desc": "Shipping AI features into existing products"
+      },
+      {
+        "title": "Databases & ORMs",
+        "tools": ["PostgreSQL · MongoDB · Oracle · MySQL", "TypeORM · Sequelize · Prisma"],
+        "desc": "Data modeling for scale and change"
+      },
+      {
+        "title": "Queues & caching",
+        "tools": ["BullMQ · RabbitMQ · Redis · SQS"],
+        "desc": "Async pipelines that survive traffic spikes"
+      },
+      {
+        "title": "Testing",
+        "tools": ["Jest · Mocha · React Testing Library", "Playwright · Cypress"],
+        "desc": "Unit to end-to-end, wired into CI"
+      },
+      {
+        "title": "Cloud & infrastructure",
+        "tools": ["AWS · Azure", "Docker · Kubernetes · Terraform"],
+        "desc": "Infrastructure as code, reproducible environments"
+      },
+      {
+        "title": "Observability",
+        "tools": ["Datadog · Grafana · Prometheus"],
+        "desc": "Metrics, alerting, and honest dashboards"
+      }
+    ]
+  },
   "ask": "Ask me anything",
+  "askLead": "An assistant trained on my work and experience. Ask about projects, stack decisions, or availability — it answers in seconds.",
   "question": "Question",
   "answer": "Assistant",
-  "placeholder": "How good are your skills in React?",
+  "placeholder": "Type a question…",
+  "send": "Send",
   "work": "Latest work",
+  "workTagline": "selected production projects",
   "visit": "Visit",
-  "contact": "Contact me",
   "chat-error": "I'm sorry, but I'm unable to pass the message on to Rodion.\nPlease feel free to contact him via {telegram} or {email}",
   "stack": "Stack:",
   "more": "Load more",
-  "chatGreeting": "🙋 Hi there! I'm Rodion's assistant, ready to provide you with information about Rodion and assist you in any way related to his work!",
-  "footer": "Contact me"
+  "chatGreeting": "Hi — I'm Rodion's assistant. Ask me about his projects, stack, or how he'd approach yours.",
+  "footerTitle": "Let's build something solid.",
+  "footerSub": "Fastest way to reach me is Telegram.",
+  "footerCopyright": "© 2026 Rodion Korsun",
+  "footerLocation": "Kyiv, Ukraine · working worldwide"
 }

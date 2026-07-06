@@ -5,7 +5,12 @@
       "PowerShell(Get-Process node -ErrorAction SilentlyContinue)",
       "PowerShell(Get-CimInstance Win32_Process -Filter \"Name='node.exe'\" | Where-Object { $_.CommandLine -match 'portfolio' } | Select-Object ProcessId, CommandLine | Format-List)",
       "PowerShell(Stop-Process -Id 14360, 7076, 38076 -Force -ErrorAction SilentlyContinue)",
-      "PowerShell(yarn remove styled-components @types/styled-components)"
+      "PowerShell(yarn remove styled-components @types/styled-components)",
+      "WebFetch(domain:claude.ai)",
+      "PowerShell(node \"C:\\\\Users\\\\korsu\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\e--work-smth-portfolio\\\\ae84e7e8-69b8-4c07-9c34-f80011a9f955\\\\scratchpad\\\\extract.mjs\")",
+      "PowerShell($c = Get-Content node_modules\\\\next\\\\dist\\\\compiled\\\\@next\\\\font\\\\dist\\\\google\\\\font-data.json -Raw; @\\('Instrument Sans','IBM Plex Mono'\\) | ForEach-Object { \"$_ -> $\\($c.Contains\\('\"' + $_ + '\"'\\)\\)\" })",
+      "PowerShell(yarn remove sass)",
+      "PowerShell(yarn build)"
     ]
   }
 }

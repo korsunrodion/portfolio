@@ -27,7 +27,7 @@ const Projects: IProject[] = [{
 {
   id: 0,
   title: 'Andoni Law',
-  stack: 'React, Next.js, Strapi',
+  stack: 'React, Next.js, Directus',
   link: 'https://andonilaw.com/',
   img: '/images/andoni2.webp',
 },
@@ -41,14 +41,14 @@ const Projects: IProject[] = [{
 {
   id: 12,
   title: 'LiveTicketGroup',
-  stack: 'React, Next.js, Python, Flask',
+  stack: 'React, Next.js, Node.js, Nest',
   link: 'https://www.livefootballtickets.com/',
   img: '/images/ltg.webp',
 },
 {
   id: 10,
   title: 'Garantme',
-  stack: 'React, Next.js, Python, Flask',
+  stack: 'React, Next.js, Node.js, Express',
   link: 'https://garantme.com/',
   img: '/images/garantme.webp',
 },
@@ -89,7 +89,7 @@ const Projects: IProject[] = [{
 }, {
   id: 5,
   title: 'Virtonomy.io',
-  stack: 'React, Next.js, Flask, Webassembly',
+  stack: 'React, Next.js, Webassembly, Node.js, Nest',
   link: 'https://www.virtonomy.io/',
   img: '/images/virtonomy.webp',
 }, {

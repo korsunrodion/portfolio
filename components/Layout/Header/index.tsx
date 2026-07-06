@@ -1,12 +1,9 @@
-import * as S from './styled';
 import { GlobalContext } from '@/globalContext';
 import useScrollDirection from '@/hooks/useScrollDirection';
 import useScrollOffset from '@/hooks/useScrollOffset';
 import useDebounceValue from '@/hooks/useDebouncedValue';
-import React, {
-  useCallback, useContext, useEffect, useState,
-} from 'react';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
+import React, { useCallback, useContext } from 'react';
 
 interface Props {
   locale: string;
@@ -32,15 +29,17 @@ function smoothScrollTo(element?: HTMLElement, offset = 0, duration = 500) {
   window.requestAnimationFrame(step);
 }
 
+const LOCALES = ['en', 'ua'] as const;
+
 const Header: React.FC<Props> = ({ locale }) => {
   const { dictionary } = useContext(GlobalContext);
-  const router = useRouter();
 
   const scrollOffset = useScrollOffset();
   const scrollDirection = useScrollDirection();
   const { value: scrollDirectionDebounce } = useDebounceValue(scrollDirection, 150);
 
-  const [localesMenuOpen, setLocalesMenuOpen] = useState(false);
+  const shown = scrollDirection === 'up' || scrollOffset <= 0;
+  const shadow = (scrollDirection === 'up' || scrollDirectionDebounce === 'up') && scrollOffset > 0;
 
   const onClick = useCallback((s: string) => {
     if (s === 'view-home') {
@@ -57,51 +56,50 @@ const Header: React.FC<Props> = ({ locale }) => {
     }
   }, []);
 
-  const onLocaleMouseEnter = () => {
-    setLocalesMenuOpen(true);
-  };
-
-  const onLocaleMouseLeave = () => {
-    setLocalesMenuOpen(false);
-  };
-
-  const onLocaleClick = () => {
-    setLocalesMenuOpen((prev) => !prev);
-  };
-
-  useEffect(() => {
-    setLocalesMenuOpen(false);
-  }, [router.pathname, router.query]);
-
   return (
-    <S.Container
-      shadow={(scrollDirection === 'up' || scrollDirectionDebounce === 'up') && scrollOffset > 0}
-      shown={scrollDirection === 'up'}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 bg-paper/90 backdrop-blur transition-all duration-300 ${shown ? 'translate-y-0' : '-translate-y-full'} ${shadow ? 'shadow-[0_1px_0_0_#e7e7ee,0_4px_16px_rgba(25,26,32,.06)]' : ''}`}
     >
-      <S.Wrapper className='container'>
-        <S.Left>
-          <S.LeftLink onClick={() => onClick('view-home')}>{dictionary?.header?.home}</S.LeftLink>
-          <S.LeftLink onClick={() => onClick('view-chat')}>{dictionary?.header?.chat}</S.LeftLink>
-          <S.LeftLink onClick={() => onClick('view-projects')}>{dictionary?.header?.projects}</S.LeftLink>
-        </S.Left>
-        <S.Right>
-          <S.RightLink href='https://t.me/korsunrodion' target='_blank'>telegram: @korsunrodion</S.RightLink>
-          <S.RightLocalesWrapper
-            onMouseEnter={onLocaleMouseEnter}
-            onMouseLeave={onLocaleMouseLeave}
-            onClick={onLocaleClick}
+      <div className='container flex h-16 items-center justify-between'>
+        <button
+          type='button'
+          onClick={() => onClick('view-home')}
+          className='text-[15px] font-bold tracking-[-0.01em]'
+        >
+          Rodion Korsun
+        </button>
+        <nav className='flex items-center gap-4 text-sm font-medium md:gap-7'>
+          <button type='button' onClick={() => onClick('view-home')} className='hidden text-ink sm:block'>
+            {dictionary?.header?.home}
+          </button>
+          <button type='button' onClick={() => onClick('view-chat')} className='text-muted transition-colors hover:text-ink'>
+            {dictionary?.header?.chat}
+          </button>
+          <button type='button' onClick={() => onClick('view-projects')} className='text-muted transition-colors hover:text-ink'>
+            {dictionary?.header?.projects}
+          </button>
+          <a
+            href='https://t.me/korsunrodion'
+            target='_blank'
+            rel='noreferrer'
+            className='hidden font-semibold text-accent md:block'
           >
-            <S.RightLocale>{locale}</S.RightLocale>
-            <S.RightLocalesMenuWrapper>
-              <S.RightLocalesMenu visible={localesMenuOpen}>
-                <S.RightLocalesMenuItem hidden={locale === 'ua'} href='/ua'>UA</S.RightLocalesMenuItem>
-                <S.RightLocalesMenuItem hidden={locale === 'en'} href='/en'>EN</S.RightLocalesMenuItem>
-              </S.RightLocalesMenu>
-            </S.RightLocalesMenuWrapper>
-          </S.RightLocalesWrapper>
-        </S.Right>
-      </S.Wrapper>
-    </S.Container>
+            telegram: @korsunrodion
+          </a>
+          <div className='flex rounded-[7px] bg-chip p-0.5 text-xs font-semibold'>
+            {LOCALES.map((item) => (
+              <Link
+                key={item}
+                href={`/${item}`}
+                className={`rounded-[5px] px-2.5 py-1 uppercase ${locale === item ? 'bg-white text-ink shadow-[0_1px_2px_rgba(0,0,0,.08)]' : 'text-muted'}`}
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 };
 

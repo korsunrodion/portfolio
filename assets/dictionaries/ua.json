@@ -4,24 +4,71 @@
     "chat": "Чат",
     "projects": "Проекти"
   },
-  "hi": "Привіт!",
-  "my-name": "Мене звуть",
-  "name": "Родіон Корсун",
-  "i-am": "і я",
-  "full-stack": "full-stack розробник",
-  "full-stack-2": "Full-Stack Developer",
-  "frontend": "Front-end навички:",
-  "backend": "Back-end навички:",
+  "title": "Full-stack розробник, що будує production-системи, які витримують навантаження.",
+  "subtitle": "7+ років розробки сервісів на Node.js/NestJS та продуктів на React/Next.js. Проєктую мікросервіси й високонавантажені API, покращую продуктивність і SEO по всьому стеку та веду фічі від моделі даних до UI.",
+  "viewProjects": "Переглянути проекти",
+  "getInTouch": "Зв'язатися",
+  "stackSection": {
+    "title": "Стек",
+    "tagline": "інструменти, які я використовую в production, а не список побажань",
+    "groups": [
+      {
+        "title": "Back-end та API",
+        "tools": ["Node.js · Express · NestJS"],
+        "desc": "Мікросервіси, високонавантажені API, обробка через черги"
+      },
+      {
+        "title": "Front-end",
+        "tools": ["React · Next.js · TypeScript", "Redux · MobX · Zustand", "Zod · React Hook Form"],
+        "desc": "Разом з Material UI, Tailwind UI, Hero UI"
+      },
+      {
+        "title": "AI та ML",
+        "tools": ["Інтеграції LLM · Тренування ML-моделей"],
+        "desc": "Впровадження AI-функцій у наявні продукти"
+      },
+      {
+        "title": "Бази даних та ORM",
+        "tools": ["PostgreSQL · MongoDB · Oracle · MySQL", "TypeORM · Sequelize · Prisma"],
+        "desc": "Моделювання даних з розрахунком на масштаб і зміни"
+      },
+      {
+        "title": "Черги та кешування",
+        "tools": ["BullMQ · RabbitMQ · Redis · SQS"],
+        "desc": "Асинхронні пайплайни, що витримують піки трафіку"
+      },
+      {
+        "title": "Тестування",
+        "tools": ["Jest · Mocha · React Testing Library", "Playwright · Cypress"],
+        "desc": "Від unit до end-to-end, інтегровано в CI"
+      },
+      {
+        "title": "Хмара та інфраструктура",
+        "tools": ["AWS · Azure", "Docker · Kubernetes · Terraform"],
+        "desc": "Інфраструктура як код, відтворювані середовища"
+      },
+      {
+        "title": "Моніторинг",
+        "tools": ["Datadog · Grafana · Prometheus"],
+        "desc": "Метрики, алерти та чесні дашборди"
+      }
+    ]
+  },
   "ask": "Запитай мене будь що",
+  "askLead": "Асистент, навчений на моїй роботі та досвіді. Запитайте про проекти, вибір стека чи доступність — відповідає за секунди.",
   "question": "Питання",
   "answer": "Асистент",
-  "placeholder": "Чи ти добре володієш React?",
+  "placeholder": "Введіть питання…",
+  "send": "Надіслати",
   "work": "Останні проекти",
+  "workTagline": "вибрані production-проекти",
   "visit": "Перейти",
-  "contact": "Як зв'язатися",
   "chat-error": "Вибачаюсь, але я не можу передати Ваше повідомлення Родіону. Ви можете написати йому через {telegram} або {email}",
   "stack": "Стек:",
   "more": "Показати більше",
   "chatGreeting": "🙋 Привіт! Я - помічник Родіона, готовий надати Вам інформацію про Родіона та допомогти Вам у будь-яких питаннях, пов'язаних з його роботою!",
-  "footer": "Зв'яжіться зі мною"
+  "footerTitle": "Збудуймо щось надійне.",
+  "footerSub": "Найшвидший спосіб зв'язатися — Telegram.",
+  "footerCopyright": "© 2026 Родіон Корсун",
+  "footerLocation": "Київ, Україна · працюю по всьому світу"
 }
